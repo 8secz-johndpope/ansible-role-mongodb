@@ -1,2 +1,3 @@
 ---
 # defaults file for Nainterceptor.mongodb
+mongodb_version: 3.2

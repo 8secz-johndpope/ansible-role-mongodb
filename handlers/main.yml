@@ -1,2 +1,20 @@
 ---
 # handlers file for Nainterceptor.mongodb
+- name: "Restart MongoDB"
+  service:
+    name: mongod
+    state: restarted
+  when: ansible_distribution == 'CentOS'
+
+- name: "Start MongoDB"
+  service:
+    name: mongod
+    state: started
+  when: ansible_distribution == 'CentOS'
+
+- name: "Enable MongoDB"
+  service:
+    name: mongod
+    state: started
+    enabled: yes
+  when: ansible_distribution == 'CentOS'

@@ -1,2 +1,14 @@
 ---
 # tasks file for Nainterceptor.mongodb
+- name: "Copy mongoDB repo"
+  template: src=../files/MongoDB.repo.j2 dest=/etc/yum.repos.d/mongodb-org-{{ mongodb_version }}.repo
+  when: ansible_distribution == 'CentOS'
+
+- name: "Install required packages"
+  yum: name={{ item }} state=present
+  with_items:
+    - mongodb-org
+  notify:
+    - Start MongoDB
+    - Enable MongoDB
+  when: ansible_distribution == 'CentOS'
